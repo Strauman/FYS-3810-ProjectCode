@@ -68,7 +68,7 @@ def build_model():
     random_input=Input(shape=(random_dim,))
     generator_input=concatenate([random_input,mnist_labels_input], axis=1)
     generator_architecture=generators.dense_clean()
-    generator=Model(inputs=generator_input, outputs=generator_architecture)
+    generator=Model(inputs=[random_input,mnist_labels_input], outputs=generator_architecture(generator_input))
 
     Z_input=Input(shape=(random_dim,), name="Z_input")
     L_input=Input(shape=(10,), name="L_input")

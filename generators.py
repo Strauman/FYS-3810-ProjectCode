@@ -15,11 +15,12 @@ import tensorflow as tf
 import keras.backend as K
 from keras.engine.topology import Layer
 import generators
-from model import random_dim, image_size
+# random_dim and image_size is available when imported
+# into model
 os.environ["KERAS_BACKEND"] = "tensorflow"
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '4'
 K.set_image_dim_ordering('tf')
-
+random_dim=10
 def dense_clean():
     return Sequential([
         Dense(7*7*128, input_shape=(random_dim+10,)),
