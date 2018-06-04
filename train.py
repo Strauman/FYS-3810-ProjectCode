@@ -1,9 +1,8 @@
-from model import build_model, image_size, random_dim
-from sys import exit
+from model import build_model, random_dim
 import numpy as np
 from prettytable import PrettyTable
 from tensorflow.examples.tutorials.mnist import input_data
-import os
+import generators
 import matplotlib
 matplotlib.use("agg")
 import matplotlib.pyplot as plt
@@ -12,6 +11,7 @@ batch_size=128
 num_epochs=5000
 table_interval=20
 plot_interval=100
+generator_architecture=generators.conv_batchnorm()
 
 def onehot(num_classes,hots):
     """ Generate onehot vectors from num_class classes """
@@ -20,7 +20,7 @@ def onehot(num_classes,hots):
     oh[rows,hots]=1
     return oh
 
-generator, adversarial, discriminator=build_model()
+generator, adversarial, discriminator=build_model(generator_architecture)
 
 def train():
     global current_epoch

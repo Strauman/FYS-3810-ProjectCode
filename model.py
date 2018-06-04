@@ -49,7 +49,7 @@ def model_discriminator():
         Activation('sigmoid')
     ])
 
-def build_model():
+def build_model(generator_architecture):
     # Process the mnist_labels:
     # Reshape to fit discriminator
     mnist_labels_input=Input(shape=(10,))
@@ -67,7 +67,7 @@ def build_model():
     discriminator.trainable=False
     random_input=Input(shape=(random_dim,))
     generator_input=concatenate([random_input,mnist_labels_input], axis=1)
-    generator_architecture=generators.dense_clean()
+    generator_architecture=generator_architecture()
     generator=Model(inputs=[random_input,mnist_labels_input], outputs=generator_architecture(generator_input))
 
     Z_input=Input(shape=(random_dim,), name="Z_input")
