@@ -29,3 +29,97 @@ def dense_clean():
         Activation("sigmoid"),
         Reshape((28,28,1)),
     ])
+def dense_dropout():
+    dropout_prob=0.3
+    return Sequential([
+        Dense(7*7*128, input_shape=(random_dim+10,)),
+        LeakyReLU(0.2),
+        Dropout(0.3),
+        Dense(28*28),
+        Activation("sigmoid"),
+        Reshape((28,28,1)),
+    ])
+def dense_batchnorm():
+    dropout_prob=0.3
+    lambda2=0
+    return Sequential([
+        Dense(7*7*128, input_shape=(random_dim+10,)),
+        LeakyReLU(0.2),
+        BatchNormalization(),
+        Dense(28*28),
+        Activation("sigmoid"),
+        Reshape((28,28,1)),
+    ])
+def dense_batchnorm_dropout():
+    dropout_prob=0.3
+    lambda2=0
+    return Sequential([
+        Dense(7*7*128, input_shape=(random_dim+10,)),
+        LeakyReLU(0.2),
+        BatchNormalization(),
+        Dropout(0.3),
+        Dense(28*28),
+        Activation("sigmoid"),
+        Reshape((28,28,1)),
+    ])
+def conv_clean():
+    return Sequential([
+        Reshape((1,1,random_dim+10), input_shape=(random_dim+10,)),
+        UpSampling2D(14),
+        Conv2D(128, 5, strides=2, padding='same'),
+        LeakyReLU(0.2),
+        UpSampling2D(),
+        Conv2D(64, 7, padding='same'),
+        LeakyReLU(0.2),
+        UpSampling2D(),
+        Conv2D(1, 8, padding='same'),
+        Activation("sigmoid"),
+    ])
+def conv_dropout():
+    return Sequential([
+        Reshape((1,1,random_dim+10), input_shape=(random_dim+10,)),
+        UpSampling2D(14),
+        Conv2D(128, 5, strides=2, padding='same'),
+        LeakyReLU(0.2),
+        Dropout(0.3),
+        UpSampling2D(),
+        Conv2D(64, 7, padding='same'),
+        LeakyReLU(0.2),
+        Dropout(0.3),
+        UpSampling2D(),
+        Conv2D(1, 8, padding='same'),
+        Activation("sigmoid"),
+    ])
+def conv_batchnorm():
+    return Sequential([
+        Reshape((1,1,random_dim+10), input_shape=(random_dim+10,)),
+        UpSampling2D(14),
+        Conv2D(128, 5, strides=2, padding='same'),
+        LeakyReLU(0.2),
+        BatchNormalization(),
+        UpSampling2D(),
+        Conv2D(64, 7, padding='same'),
+        LeakyReLU(0.2),
+        BatchNormalization(),
+        UpSampling2D(),
+        Conv2D(1, 8, padding='same'),
+        Activation("sigmoid"),
+    ])
+def conv_batchnorm_dropout():
+    dropout_prob=0.3
+    return Sequential([
+        Reshape((1,1,random_dim+10), input_shape=(random_dim+10,)),
+        UpSampling2D(14),
+        Conv2D(128, 5, strides=2, padding='same'),
+        LeakyReLU(0.2),
+        BatchNormalization(),
+        Dropout(dropout_prob),
+        UpSampling2D(),
+        Conv2D(64, 7, padding='same'),
+        LeakyReLU(0.2),
+        BatchNormalization(),
+        Dropout(dropout_prob),
+        UpSampling2D(),
+        Conv2D(1, 8, padding='same'),
+        Activation("sigmoid"),
+    ])
