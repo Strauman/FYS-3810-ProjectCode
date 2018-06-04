@@ -3,7 +3,7 @@ Note: If you are not sent here from the report, you should know this code is acc
 ## Edits after deadline
 Here is a list of what has happened since the deadline.
 - Made it easier to train models with different architectures
-- Updated this README.md accordingly
+- Updated this description accordingly
 
 Here is Githubs [list of changes](https://github.com/Strauman/FYS-3810-ProjectCode/commits/master)
 The last version _before_ the deadline you can find with the link above or [click here](https://github.com/Strauman/FYS-3810-ProjectCode/tree/before_deadline)
